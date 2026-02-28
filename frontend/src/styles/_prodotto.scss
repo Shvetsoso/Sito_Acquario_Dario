@@ -1,0 +1,51 @@
+.container {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+
+  .prodotto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: aqua;
+    border-radius: 10px;
+
+    .immagineProdotto {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 95%;
+        height: 95%;
+      }
+    }
+
+    .nome-prezzo {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .compra {
+      width: 90%;
+      height: 5vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+  }
+}

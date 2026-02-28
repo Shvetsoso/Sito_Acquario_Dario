@@ -1,0 +1,48 @@
+exports.createArticolo = async (req, res, next) => {
+  try {
+    const articolo = await service.createArticolo(req.body);
+    res.status(201).json({
+      success: true,
+      data: articolo
+    });
+
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getAllArticoli = async (req, res, next) => {
+  try {
+    const articoli = await service.getAllArticoli();
+    res.status(200).json({
+      success: true,
+      data: articoli
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getArticoloById = async (req, res, next) => {
+  try {
+    const articolo = await service.getArticoloById(req.params.id);
+    res.status(200).json({
+      success: true,
+      data: articolo
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.updateArticolo = async (req, res, next) => {
+  try {
+    const articolo = await service.updateArticolo(req.params.id, req.body);
+    res.status(200).json({
+      success: true,
+      data: articolo
+    });
+  } catch (err) {
+    next(err);
+  }
+};
