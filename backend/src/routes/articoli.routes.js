@@ -14,13 +14,27 @@ router.post(
   controller.createArticolo
 );
 
+// create singolo categoria
+router.post(
+  '/',
+  authMiddleware,
+  validate(createArticoloSchema),
+  controller.createCategoria
+);
+
 //  READ ALL
 router.get('/', controller.getAllArticoli);
+
+// read all singole categorie
 
 //  READ ONE
 router.get('/:id', controller.getArticoloById);
 
+// read singola categoria 
+
 //  UPDATE
 router.put('/:id', authMiddleware, controller.updateArticolo);
+
+// update singola categoria 
 
 module.exports = router;
