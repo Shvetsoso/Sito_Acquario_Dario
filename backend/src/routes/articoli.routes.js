@@ -15,12 +15,7 @@ router.post(
 );
 
 // create singolo categoria
-router.post(
-  '/',
-  authMiddleware,
-  validate(createArticoloSchema),
-  controller.createCategoria
-);
+
 
 //  READ ALL
 router.get('/', controller.getAllArticoli);

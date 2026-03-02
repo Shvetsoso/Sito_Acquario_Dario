@@ -11,12 +11,12 @@ const createVendita = async (data) => {
 
     let totale = 0;
 
-    for (const item of data.articoli) {
+    const articolo = await venditeRepo.getArticoloById(
+      client,
+      item.id_articolo
+    );
 
-      const articolo = await venditeRepo.getArticoloById(
-        client,
-        item.id_articolo
-      );
+    for (const item of data.articoli) {
 
       if (!articolo) {
         throw new ApiError(404, 'Articolo non trovato');
@@ -41,11 +41,6 @@ const createVendita = async (data) => {
     );
 
     for (const item of data.articoli) {
-
-      const articolo = await venditeRepo.getArticoloById(
-        client,
-        item.id_articolo
-      );
 
       await venditeRepo.insertDettaglio(
         client,
