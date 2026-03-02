@@ -1,3 +1,5 @@
+const Joi = require('joi');
+
 exports.createArticoloSchema = Joi.object({
 
   nome: Joi.string().min(3).max(100).required(),
@@ -9,5 +11,5 @@ exports.createArticoloSchema = Joi.object({
   id_categoria: Joi.number().integer().required(),
 
   quantita: Joi.number().integer().min(0).required()
-  
+
 });
