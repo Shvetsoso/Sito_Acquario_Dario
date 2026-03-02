@@ -1,5 +1,6 @@
 const pool = require('../config/db');
-const repo = require('../repositories/vendite.repository');
+const venditeRepo = require('../repositories/vendite.repository');
+const magazzinoRepo = require('../repositories/magazzino.repository');
 const ApiError = require('../utils/ApiError');
 
 const createVendita = async (data) => {
@@ -10,33 +11,51 @@ const createVendita = async (data) => {
 
     let totale = 0;
 
-    for (const item of data.articoli) {
+    const articolo = await venditeRepo.getArticoloById(
+      client,
+      item.id_articolo
+    );
 
-      const articolo = await repo.getArticoloById(
-        client,
-        item.id_articolo
-      );
+    for (const item of data.articoli) {
 
       if (!articolo) {
         throw new ApiError(404, 'Articolo non trovato');
       }
-      if (articolo.quantita_magazzino < item.quantita)
-        throw new ApiError(409, 'Quantità insufficiente in magazzino');
+
+      const magazzino = await magazzinoRepo.getByArticoloId(
+        client,
+        item.id_articolo
+      );
+
+      if (!magazzino || magazzino.quantita < item.quantita) {
+        throw new ApiError(409, 'Quantità insufficiente');
+      }
 
       totale += articolo.prezzo * item.quantita;
+    }
 
-      await repo.updateMagazzino(
+    const vendita = await venditeRepo.insertVendita(
+      client,
+      data.id_cliente,
+      totale
+    );
+
+    for (const item of data.articoli) {
+
+      await venditeRepo.insertDettaglio(
+        client,
+        vendita.id,
+        item.id_articolo,
+        item.quantita,
+        articolo.prezzo
+      );
+
+      await magazzinoRepo.updateQuantita(
         client,
         item.id_articolo,
         item.quantita
       );
     }
-
-    const vendita = await repo.insertVendita(
-      client,
-      data.id_cliente,
-      totale
-    );
 
     await client.query('COMMIT');
     return vendita;
@@ -49,6 +68,4 @@ const createVendita = async (data) => {
   }
 };
 
-module.exports = {
-  createVendita
-};
+module.exports = { createVendita };

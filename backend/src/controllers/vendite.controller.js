@@ -1,9 +1,9 @@
 const venditeService = require('../services/vendite.service');
 
-const createVendita = async (req, res) => {
+const insertVendita = async (req, res, next) => {
   try {
 
-    const vendita = await venditeService.createVendita(req.body);
+    const vendita = await venditeService.insertVendita(req.body);
 
     res.status(201).json({
       success: true,
@@ -16,5 +16,5 @@ const createVendita = async (req, res) => {
 };
 
 module.exports = {
-  createVendita
+  insertVendita
 };

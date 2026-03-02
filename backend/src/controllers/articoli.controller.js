@@ -1,3 +1,5 @@
+const service = require('../services/articoli.service');
+
 exports.createArticolo = async (req, res, next) => {
   try {
     const articolo = await service.createArticolo(req.body);

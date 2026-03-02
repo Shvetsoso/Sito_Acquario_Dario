@@ -11,7 +11,26 @@ router.post(
   '/',
   authMiddleware,
   validate(createVenditaSchema),
-  controller.createVendita
+  controller.insertVendita
 );
+
+//  CREATE dettaglio
+router.post(
+  '/',
+  authMiddleware,
+  validate(createVenditaSchema),
+  controller.insertDettaglio
+);
+
+//  READ ALL
+router.get('/', controller.findAll);
+
+//  READ ONE articolo
+router.get('/:id', controller.getArticoloById);
+
+//  READ ONE specifico
+router.get('/:id', controller.getById);
+
+//  UPDATE
 
 module.exports = router;
