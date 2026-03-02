@@ -1,6 +1,6 @@
 const venditeService = require('../services/vendite.service');
 
-const createVendita = async (req, res) => {
+const createVendita = async (req, res, next) => {
   try {
 
     const vendita = await venditeService.createVendita(req.body);
