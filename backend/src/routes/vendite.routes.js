@@ -15,12 +15,6 @@ router.post(
 );
 
 //  CREATE dettaglio
-router.post(
-  '/',
-  authMiddleware,
-  validate(createVenditaSchema),
-  controller.insertDettaglio
-);
 
 //  READ ALL
 router.get('/', controller.findAll);
