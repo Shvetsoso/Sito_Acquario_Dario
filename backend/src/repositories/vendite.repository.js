@@ -73,11 +73,3 @@ exports.findById = async (id) => {
     articoli: dettagli.rows
   };
 };
-
-module.exports = {
-  insertVendita,
-  insertDettaglio,
-  getArticoloById,
-  findAll,
-  findById
-};

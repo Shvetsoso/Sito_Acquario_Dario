@@ -1,8 +1,15 @@
 import React from "react";
-import Prodotto from "./Components/Prodotto";
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./Pages/Home";
 
 function App() {
-  return <Prodotto />;
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
