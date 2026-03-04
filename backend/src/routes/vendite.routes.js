@@ -11,7 +11,7 @@ router.post(
   '/',
   authMiddleware,
   validate(createVenditaSchema),
-  controller.insertVendita
+  controller.createVendita
 );
 
 //  CREATE dettaglio
