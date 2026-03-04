@@ -1,8 +1,7 @@
 const venditeService = require('../services/vendite.service');
 
-const createVendita = async (req, res, next) => {
+exports.createVendita = async (req, res, next) => {
   try {
-
     const vendita = await venditeService.createVendita(req.body);
 
     res.status(201).json({
@@ -14,24 +13,24 @@ const createVendita = async (req, res, next) => {
     next(err);
   }
 };
-const insertDettaglio = async (req, res, next) => {
+
+exports.findAll = async (req, res, next) => {
   try {
+    const vendite = await venditeService.findAll();
 
-    const vendita = await venditeService.insertVendita(req.body);
-
-    res.status(201).json({
+    res.status(200).json({
       success: true,
-      data: vendita
+      data: vendite
     });
 
   } catch (err) {
     next(err);
   }
 };
-const findAll = async (req, res, next) => {
-  try {
 
-    const vendita = await venditeService.insertVendita(req.body);
+exports.getById = async (req, res, next) => {
+  try {
+    const vendita = await venditeService.getById(req.params.id);
 
     res.status(200).json({
       success: true,
@@ -41,40 +40,4 @@ const findAll = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
-const getArticoloById = async (req, res, next) => {
-  try {
-
-    const vendita = await venditeService.insertVendita(req.body);
-
-    res.status(200).json({
-      success: true,
-      data: vendita
-    });
-
-  } catch (err) {
-    next(err);
-  }
-};
-const getById = async (req, res, next) => {
-  try {
-
-    const vendita = await venditeService.insertVendita(req.body);
-
-    res.status(200).json({
-      success: true,
-      data: vendita
-    });
-
-  } catch (err) {
-    next(err);
-  }
-};
-
-module.exports = {
-  createVendita,
-  insertDettaglio,
-  getArticoloById,
-  findAll,
-  getById
 };

@@ -22,3 +22,17 @@ exports.getArticoloById = async (id) => {
 exports.updateArticolo = async (id, data) => {
   return await repository.update(id, data);
 };
+
+exports.deleteArticolo = async (id) => {
+  const articolo = await repository.findById(id);
+
+  const ApiError = require('../utils/ApiError');
+
+  if (!articolo) {
+    throw new ApiError(404, 'Articolo non trovato');
+  }
+
+  await repository.softDelete(id);
+
+  return { message: 'Articolo disattivato con successo' };
+};

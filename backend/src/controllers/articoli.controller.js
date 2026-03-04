@@ -48,3 +48,17 @@ exports.updateArticolo = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.deleteArticolo = async (req, res, next) => {
+  try {
+    const result = await service.deleteArticolo(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      data: result
+    });
+
+  } catch (err) {
+    next(err);
+  }
+};

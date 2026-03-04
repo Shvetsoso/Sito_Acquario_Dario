@@ -11,12 +11,12 @@ const createVendita = async (data) => {
 
     let totale = 0;
 
-    const articolo = await venditeRepo.getArticoloById(
-      client,
-      item.id_articolo
-    );
-
     for (const item of data.articoli) {
+
+      const articolo = await venditeRepo.getArticoloById(
+        client,
+        item.id_articolo
+      );
 
       if (!articolo) {
         throw new ApiError(404, 'Articolo non trovato');
@@ -33,14 +33,18 @@ const createVendita = async (data) => {
 
       totale += articolo.prezzo * item.quantita;
     }
-
-    const vendita = await venditeRepo.insertVendita(
+    const vendita = await venditeRepo.createVendita(
       client,
       data.id_cliente,
       totale
     );
 
     for (const item of data.articoli) {
+
+      const articolo = await venditeRepo.getArticoloById(
+        client,
+        item.id_articolo
+      );
 
       await venditeRepo.insertDettaglio(
         client,
@@ -68,4 +72,22 @@ const createVendita = async (data) => {
   }
 };
 
-module.exports = { createVendita };
+const findAll = async () => {
+  return await venditeRepo.findAll();
+};
+
+const getById = async (id) => {
+  const vendita = await venditeRepo.findById(id);
+
+  if (!vendita.vendita) {
+    throw new ApiError(404, 'Vendita non trovata');
+  }
+
+  return vendita;
+};
+
+module.exports = {
+  createVendita,
+  findAll,
+  getById
+};
