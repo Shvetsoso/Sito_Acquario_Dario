@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-exports.insertVendita = async (client, id_cliente, totale) => {
+exports.createVendita = async (client, id_cliente, totale) => {
   const result = await client.query(
     `INSERT INTO vendite (id_cliente, totale)
      VALUES ($1, $2)

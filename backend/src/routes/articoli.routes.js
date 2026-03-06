@@ -32,4 +32,7 @@ router.put('/:id', authMiddleware, controller.updateArticolo);
 
 // update singola categoria 
 
+// DELETE (soft)
+router.delete('/:id', authMiddleware, controller.deleteArticolo);
+
 module.exports = router;

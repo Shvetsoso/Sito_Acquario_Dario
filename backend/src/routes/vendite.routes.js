@@ -6,25 +6,18 @@ const controller = require('../controllers/vendite.controller');
 const { createVenditaSchema } = require('../validators/vendite.validator');
 const validate = require('../middlewares/validate.middleware');
 
-//  CREATE
+// CREATE
 router.post(
   '/',
   authMiddleware,
   validate(createVenditaSchema),
-  controller.insertVendita
+  controller.createVendita
 );
 
-//  CREATE dettaglio
+// READ ALL
+router.get('/', authMiddleware, controller.findAll);
 
-//  READ ALL
-router.get('/', controller.findAll);
-
-//  READ ONE articolo
-router.get('/:id', controller.getArticoloById);
-
-//  READ ONE specifico
-router.get('/:id', controller.getById);
-
-//  UPDATE
+// READ ONE
+router.get('/:id', authMiddleware, controller.getById);
 
 module.exports = router;

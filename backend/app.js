@@ -4,6 +4,7 @@ const cors = require('cors');
 const articoliRoutes = require('./src/routes/articoli.routes');
 const clientiRoutes = require('./src/routes/clienti.routes');
 const venditeRoutes = require('./src/routes/vendite.routes');
+const categorieRoutes = require('./src/routes/categorie.routes');
 const authRoutes = require('./src/routes/auth.routes');
 const errorMiddleware = require('./src/middlewares/error.middleware');
 const morgan = require('morgan');
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 app.use('/api/articoli', articoliRoutes);
 app.use('/api/clienti', clientiRoutes);
 app.use('/api/vendite', venditeRoutes);
+app.use('/api/categorie', categorieRoutes);
 app.use('/api/auth', authRoutes);
 
 app.use(errorMiddleware);

@@ -2,18 +2,31 @@ import React, { useState, useEffect } from "react";
 import "../styles/_home.scss";
 import "aos/dist/aos.css";
 import AOS from "aos";
+import { getArticoli } from "../api/articoli";
 
 const App = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
+   const [articoli, setArticoli] = useState([])
+
+    useEffect(() => {
+      getArticoli().then((res) => {setArticoli(res); console.log(res)})
+      .catch((err) => {
+        console.error(err)
+      })
+    }, [])  
+
   return (
     <div className="App">
       <Header />
       <MainContent />
       <Footer />
-    </div>
+
+     {JSON.stringify(articoli)}
+
+     </div>
   );
 };
 
