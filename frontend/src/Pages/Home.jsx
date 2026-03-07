@@ -9,24 +9,25 @@ const App = () => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-   const [articoli, setArticoli] = useState([])
+  const [articoli, setArticoli] = useState([]);
 
-    useEffect(() => {
-      getArticoli().then((res) => {setArticoli(res); console.log(res)})
-      .catch((err) => {
-        console.error(err)
+  useEffect(() => {
+    getArticoli()
+      .then((res) => {
+        setArticoli(res);
+        console.log(res);
       })
-    }, [])  
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <div className="App">
       <Header />
       <MainContent />
       <Footer />
-
-     {JSON.stringify(articoli)}
-
-     </div>
+    </div>
   );
 };
 
@@ -45,14 +46,17 @@ const Card = ({ title, image, description, backContent }) => {
         className={`card-inner ${isFlipped ? "flipped" : ""}`}
         onClick={() => setIsFlipped(!isFlipped)}
       >
-        <div className="card-front">
-          <h2>{title}</h2>
-          <img src={image} alt={title} />
-          <p>{description}</p>
-        </div>
-        <div className="card-back">
-          <p>{backContent}</p>
-        </div>
+        {!isFlipped ? (
+          <div className="card-front">
+            <h2>{title}</h2>
+            <img src={image} alt={title} />
+            <p>{description}</p>
+          </div>
+        ) : (
+          <div className="card-back">
+            <p>{backContent}</p>
+          </div>
+        )}
       </div>
     </div>
   );
