@@ -9,7 +9,7 @@ const { createArticoloSchema } = require('../validators/articoli.validator');
 //  CREATE
 router.post(
   '/',
-  authMiddleware,
+  //authMiddleware,
   validate(createArticoloSchema),
   controller.createArticolo
 );
