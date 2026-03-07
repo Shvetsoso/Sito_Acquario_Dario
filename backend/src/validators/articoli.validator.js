@@ -1,8 +1,6 @@
-const Joi = require('joi');
-
 exports.createArticoloSchema = Joi.object({
 
-  nome: Joi.string().min(3).max(100).required(),
+  nome: Joi.string().required(),
 
   prezzo: Joi.number().positive().required(),
 
@@ -10,6 +8,15 @@ exports.createArticoloSchema = Joi.object({
 
   id_categoria: Joi.number().integer().required(),
 
-  quantita: Joi.number().integer().min(0).required()
+  tipo: Joi.string().valid(
+    "pesce",
+    "acquario",
+    "attrezzatura",
+    "prodotto"
+  ).required(),
+
+  quantita: Joi.number().integer().min(0).required(),
+
+  dettagli: Joi.object().optional()
 
 });

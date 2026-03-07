@@ -9,29 +9,24 @@ const { createArticoloSchema } = require('../validators/articoli.validator');
 //  CREATE
 router.post(
   '/',
+  //authMiddleware,
   validate(createArticoloSchema),
   controller.createArticolo
 );
 
-// create singolo categoria
-
-
 //  READ ALL
 router.get('/', controller.getAllArticoli);
-
-// read all singole categorie
 
 //  READ ONE
 router.get('/:id', controller.getArticoloById);
 
-// read singola categoria 
-
 //  UPDATE
 router.put('/:id', authMiddleware, controller.updateArticolo);
 
-// update singola categoria 
-
 // DELETE (soft)
 router.delete('/:id', authMiddleware, controller.deleteArticolo);
+
+// FILTRO RICERCA
+router.get('/filter',controller.filterArticoli);
 
 module.exports = router;
