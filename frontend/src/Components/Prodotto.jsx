@@ -2,7 +2,7 @@ import React from "react";
 import pesce from "../../../img/Fresh Fish.png";
 import "../styles/_prodotto.scss";
 
-function Prodotto() {
+function Prodotto({ nome, prezzo, descrizione, categoria }) {
   return (
     <div className="container">
       <div className="prodotto">
@@ -10,8 +10,9 @@ function Prodotto() {
           <img src={pesce} />
         </div>
         <div className="nome-prezzo">
-          <div className="nome">pesce rosso</div>
-          <div className="prezzo">20€</div>
+          <div className="nome">{nome}</div>
+          <div className="prezzo">{prezzo}€</div>
+          <div className="categoria">{categoria}</div>
         </div>
         <div className="compra">compra ora</div>
       </div>

@@ -15,7 +15,6 @@ const App = () => {
     getArticoli()
       .then((res) => {
         setArticoli(res);
-        console.log(res);
       })
       .catch((err) => {
         console.error(err);
