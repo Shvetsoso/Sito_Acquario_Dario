@@ -1,4 +1,5 @@
-const Joi = require('joi');
+const Joi = require("joi");
+
 exports.createArticoloSchema = Joi.object({
 
   nome: Joi.string().required(),

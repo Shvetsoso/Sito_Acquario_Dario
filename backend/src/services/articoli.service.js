@@ -57,7 +57,7 @@ exports.getAllArticoli = async () => {
 */
 exports.getArticoloById = async (id) => {
 
-  const articolo = await repo.findById(id);
+  const articolo = await repository.findById(id);
 
   if (!articolo) {
     throw new ApiError(404, 'Articolo non trovato');
@@ -67,8 +67,57 @@ exports.getArticoloById = async (id) => {
 
 };
 
-exports.updateArticolo = async (id, data) => {
-  return await repository.update(id, data);
+exports.updateArticolo = async (id,data)=>{
+
+const client = await pool.connect();
+
+try{
+
+await client.query("BEGIN");
+
+const articolo = await repository.updateArticolo(client,id,data);
+
+switch(data.tipo){
+
+case "pesce":
+await repository.updatePesce(client,id,data.dettagli);
+break;
+
+case "acquario":
+await repository.updateAcquario(client,id,data.dettagli);
+break;
+
+case "prodotto":
+await repository.updateProdotto(client,id,data.dettagli);
+break;
+
+case "attrezzatura":
+await repository.updateAttrezzatura(client,id,data.dettagli);
+break;
+
+}
+
+if(data.quantita !== undefined){
+
+await repository.updateMagazzino(client,id,data.quantita);
+
+}
+
+await client.query("COMMIT");
+
+return articolo;
+
+}catch(err){
+
+await client.query("ROLLBACK");
+throw err;
+
+}finally{
+
+client.release();
+
+}
+
 };
 
 exports.deleteArticolo = async (id) => {
@@ -87,6 +136,6 @@ exports.deleteArticolo = async (id) => {
 
 exports.filterArticoli = async (filters)=>{
 
-return await repo.filter(filters);
+return await repository.filter(filters);
 
 };
