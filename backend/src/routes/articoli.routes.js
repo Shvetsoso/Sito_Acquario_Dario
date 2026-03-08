@@ -27,6 +27,6 @@ router.put('/:id', authMiddleware, controller.updateArticolo);
 router.delete('/:id', authMiddleware, controller.deleteArticolo);
 
 // FILTRO RICERCA
-router.get('/filter',controller.filterArticoli);
+router.get('/filter', controller.filterArticoli);
 
 module.exports = router;
