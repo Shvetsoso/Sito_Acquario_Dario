@@ -1,6 +1,5 @@
 const pool = require('../config/db');
-const repository = require('../repository/articoli.repository');
-
+const repository = require('../repositories/articoli.repository');
 exports.createArticolo = async (data) => {
 
   const client = await pool.connect();
@@ -49,13 +48,13 @@ exports.createArticolo = async (data) => {
   }
 
 };
-
+/*
 exports.getAllArticoli = async () => {
 
   return await repository.findAll();
 
 };
-
+*/
 exports.getArticoloById = async (id) => {
 
   const articolo = await repo.findById(id);

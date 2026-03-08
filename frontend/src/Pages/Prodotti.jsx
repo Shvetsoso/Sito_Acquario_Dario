@@ -13,12 +13,12 @@ function Prodotti() {
   const dispatch = useDispatch();
   const prodotti = useSelector((state) => state.prodotti);
 
-  const { datas, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["getProdotti"],
     queryFn: async () => {
       try {
         const res = await getArticoli();
-        dispatch(setProdotti(res.data));
+        dispatch(setProdotti(res));
         return res;
       } catch (err) {
         console.error(err);
@@ -26,6 +26,8 @@ function Prodotti() {
       }
     },
   });
+
+  console.log(prodotti);
 
   return (
     <div>

@@ -9,18 +9,6 @@ const App = () => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  const [articoli, setArticoli] = useState([]);
-
-  useEffect(() => {
-    getArticoli()
-      .then((res) => {
-        setArticoli(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
-
   return (
     <div className="App">
       <Header />
