@@ -10,9 +10,9 @@ function Prodotto({ nome, prezzo, descrizione, categoria }) {
           <img src={pesce} />
         </div>
         <div className="nome-prezzo">
-          <div className="nome">{nome}</div>
-          <div className="prezzo">{prezzo}€</div>
-          <div className="categoria">{categoria}</div>
+          <div className="nome">nome: {nome}</div>
+          <div className="prezzo">prezzo: {prezzo}€</div>
+          <div className="categoria">categoria: {categoria}</div>
         </div>
         <div className="compra">compra ora</div>
       </div>

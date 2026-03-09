@@ -9,6 +9,7 @@ import Pesci from "./Pages/Pesci";
 import Acquari from "./Pages/Acquari";
 import Articoli from "./Pages/Articoli";
 import CodiciSconto from "./Pages/CodificiSconto";
+import Contatti from "./Pages/Contatti";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin/acquari" element={<Acquari />} />
         <Route path="/admin/articoli" element={<Articoli />} />
         <Route path="/admin/codici-sconto" element={<CodiciSconto />} />
+        <Route path="/contatti" element={<Contatti />} />
       </Routes>
     </div>
   );
