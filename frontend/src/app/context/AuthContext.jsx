@@ -1,0 +1,53 @@
+import { createContext, useContext, useState } from 'react';
+
+const AuthContext = createContext(undefined);
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+
+  const login = async (email, password) => {
+    // Mock login - in production this would call an API
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    setUser({
+      id: '1',
+      email,
+      name: email.split('@')[0],
+    });
+  };
+
+  const register = async (email, password, name) => {
+    // Mock register - in production this would call an API
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    setUser({
+      id: '1',
+      email,
+      name,
+    });
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        register,
+        logout,
+        isAuthenticated: !!user,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}
