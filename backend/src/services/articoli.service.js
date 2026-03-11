@@ -48,16 +48,74 @@ exports.createArticolo = async (data) => {
   }
 
 };
-/*
+
+// GET ALL --------------------------------------------------------
+
 exports.getAllArticoli = async () => {
 
-  return await repository.findAll();
+  const articoli = await repository.findArticoli();
+
+  if (!articoli) {
+    throw new ApiError(404, 'non sono presenti articoli');
+  }
+
+  return articoli;
 
 };
-*/
-exports.getArticoloById = async (id) => {
 
-  const articolo = await repository.findById(id);
+exports.getAllPesci = async () => {
+
+  const articoli = await repository.findPesci();
+
+  if (!articoli) {
+    throw new ApiError(404, 'non sono presenti pesci');
+  }
+
+  return articoli;
+
+};
+
+exports.getAllProdotti = async () => {
+
+  const articoli = await repository.findProdotti();
+
+  if (!articoli) {
+    throw new ApiError(404, 'non sono presenti prodotti');
+  }
+
+  return articoli;
+
+};
+
+exports.getAllAcquari = async () => {
+
+  const articoli = await repository.findAcquari();
+
+  if (!articoli) {
+    throw new ApiError(404, 'non sono presenti acquari');
+  }
+
+  return articoli;
+
+};
+
+exports.getAllAttrezzature = async () => {
+
+  const articoli = await repository.findAttrezzature();
+
+  if (!articoli) {
+    throw new ApiError(404, 'non sono presenti attrezzature');
+  }
+
+  return articoli;
+
+};
+
+// GET BY ID -------------------------------------------------------
+
+exports.getArticoloByNme = async (nome) => {
+
+  const articolo = await repository.findArticoliByName(nome);
 
   if (!articolo) {
     throw new ApiError(404, 'Articolo non trovato');

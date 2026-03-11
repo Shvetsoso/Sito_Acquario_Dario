@@ -16,23 +16,19 @@ router.post(
 );
 
 //  READ ALL
-/*
+
 router.get('/', controller.getAllArticoli);
-*/
 
-router.get('/', async (req, res) => {
-  await pool.query("SELECT * FROM prodotti", (err, result) => {
-    if(err) 
-      return res.status(500)
-    else {
-      return res.status(200).json({success: true, data: result.rows})
-    }
-  })
+router.get('/', controller.getAllPesci);
 
-})
+router.get('/', controller.getAllAcquari);
+
+router.get('/', controller.getAllAttrezzature);
+
+router.get('/', controller.getAllProdotti);
 
 //  READ ONE
-router.get('/:id', controller.getArticoloById);
+router.get('/:id', controller.getArticoloByName);
 
 //  UPDATE
 router.put('/:id', authMiddleware, controller.updateArticolo);

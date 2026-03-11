@@ -20,20 +20,20 @@ exports.createArticolo = async (client, data) => {
 
 };
 
-exports.insertPesce = async (client,id,d)=>{
+exports.insertPesce = async (client,id,data) => {
 
 await client.query(
-`INSERT INTO pesci
-(id_articolo,specie,temperatura_min,temperatura_max,acqua_dolce,dimensione_media)
-VALUES($1,$2,$3,$4,$5,$6)`,
-[
-id,
-d.specie,
-d.temperatura_min,
-d.temperatura_max,
-d.acqua_dolce,
-d.dimensione_media
-]);
+  `INSERT INTO pesci
+  (id_articolo,specie,temperatura_min,temperatura_max,acqua_dolce,dimensione_media)
+  VALUES($1,$2,$3,$4,$5,$6)`,
+  [
+    id,
+    data.specie,
+    data.temperatura_min,
+    data.temperatura_max,
+    data.acqua_dolce,
+    data.dimensione_media
+  ]);
 
 };
 
@@ -41,18 +41,18 @@ d.dimensione_media
 exports.insertAcquario = async (client,id,d)=>{
 
 await client.query(
-`INSERT INTO acquari
-(id_articolo,litri,lunghezza,larghezza,altezza,acqua_dolce,con_mobile)
-VALUES($1,$2,$3,$4,$5,$6,$7)`,
-[
-id,
-d.litri,
-d.lunghezza,
-d.larghezza,
-d.altezza,
-d.acqua_dolce,
-d.con_mobile
-]);
+  `INSERT INTO acquari
+  (id_articolo,litri,lunghezza,larghezza,altezza,acqua_dolce,con_mobile)
+  VALUES($1,$2,$3,$4,$5,$6,$7)`,
+  [
+    id,
+    d.litri,
+    d.lunghezza,
+    d.larghezza,
+    d.altezza,
+    d.acqua_dolce,
+    d.con_mobile
+  ]);
 
 };
 
@@ -230,104 +230,53 @@ WHERE id=$1`,
 
 };
 
-exports.findAll = async ()=>{
+exports.findAcquari = async ()=>{
 
-const result = await pool.query(`
+  const result = await pool.query("SELECT * FROM acquari");
 
-SELECT
-a.id,
-a.nome,
-a.prezzo,
-a.descrizione,
-a.tipo,
-c.nome categoria,
-m.quantita,
-
-p.specie,
-p.temperatura_min,
-p.temperatura_max,
-p.acqua_dolce,
-p.dimensione_media,
-
-ac.litri,
-ac.lunghezza,
-ac.larghezza,
-ac.altezza,
-ac.acqua_dolce,
-ac.con_mobile,
-
-pr.marca,
-pr.tipo_prodotto,
-pr.peso_gm,
-pr.data_scadenza,
-
-at.tipo_attrezzatura
-
-FROM articoli a
-
-LEFT JOIN categorie c ON a.id_categoria=c.id
-LEFT JOIN magazzino m ON m.id_articolo=a.id
-
-LEFT JOIN pesci p ON p.id_articolo=a.id
-LEFT JOIN acquari ac ON ac.id_articolo=a.id
-LEFT JOIN prodotti pr ON pr.id_articolo=a.id
-LEFT JOIN attrezzature at ON at.id_articolo=a.id
-
-WHERE a.attivo=true
-ORDER BY a.id DESC
-
-`);
-
-return result.rows;
+  return result.rows;
 
 };
 
-exports.findById = async (id)=>{
+exports.findPesci = async ()=>{
+
+  const result = await pool.query("SELECT * FROM pesci");
+
+  return result.rows;
+
+};
+
+exports.findProdotti = async ()=>{
+
+  const result = await pool.query("SELECT * FROM prodotti");
+
+  return result.rows;
+
+};
+
+exports.findAttrezzature = async ()=>{
+
+  const result = await pool.query("SELECT * FROM attrezzature");
+
+  return result.rows;
+
+};
+
+exports.findArticoli = async ()=>{
+
+  const result = await pool.query("SELECT * FROM articoli");
+
+  return result.rows;
+
+};
+
+// GETTER BY ID -------------------------------------------------------
+/*
+exports.findAcquariById = async (id) => {
 
 const result = await pool.query(`
 
-SELECT
-a.id,
-a.nome,
-a.prezzo,
-a.descrizione,
-a.tipo,
-a.id_categoria,
-c.nome categoria,
-m.quantita,
-
-p.specie,
-p.temperatura_min,
-p.temperatura_max,
-p.acqua_dolce,
-p.dimensione_media,
-
-ac.litri,
-ac.lunghezza,
-ac.larghezza,
-ac.altezza,
-ac.acqua_dolce,
-ac.con_mobile,
-
-pr.marca,
-pr.tipo_prodotto,
-pr.peso_gm,
-pr.data_scadenza,
-
-at.tipo_attrezzatura
-
-FROM articoli a
-
-LEFT JOIN categorie c ON a.id_categoria=c.id
-LEFT JOIN magazzino m ON m.id_articolo=a.id
-
-LEFT JOIN pesci p ON p.id_articolo=a.id
-LEFT JOIN acquari ac ON ac.id_articolo=a.id
-LEFT JOIN prodotti pr ON pr.id_articolo=a.id
-LEFT JOIN attrezzature at ON at.id_articolo=a.id
-
-WHERE a.id=$1
-AND a.attivo=true
+  SELECT * FROM acquari WHERE id = ?
 
 `,[id]);
 
@@ -335,6 +284,56 @@ return result.rows[0];
 
 };
 
+exports.findPesciById = async (id) => {
+
+const result = await pool.query(`
+
+  SELECT * FROM pesci WHERE id = ?
+
+`,[id]);
+
+return result.rows[0];
+
+};
+
+exports.findProdottiById = async (id) => {
+
+const result = await pool.query(`
+
+  SELECT * FROM prodotti WHERE id = ?
+
+`,[id]);
+
+return result.rows[0];
+
+};
+
+exports.findAttrezzatureById = async (id) => {
+
+const result = await pool.query(`
+
+  SELECT * FROM attrezzature WHERE id = ?
+
+`,[id]);
+
+return result.rows[0];
+
+};
+*/
+exports.findArticoliByName = async (nome) => {
+
+const result = await pool.query(`
+
+  SELECT * FROM articoli WHERE nome = ?
+
+`,[nome]);
+
+return result.rows[0];
+
+};
+
+
+/*
 exports.filter = async (filters)=>{
 
 let query = `
@@ -393,3 +392,5 @@ const result = await pool.query(query,values);
 return result.rows;
 
 };
+
+*/
