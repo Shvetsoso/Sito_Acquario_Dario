@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
-import { Heart, Award, Users, Globe, Target, Sparkles } from "lucide-react";
+import { motion } from 'motion/react';
+import { Heart, Award, Users, Globe, Target, Sparkles } from 'lucide-react';
 
 export function About() {
   return (
@@ -32,21 +32,20 @@ export function About() {
           </div>
           <div className="space-y-4 text-white/80 text-lg">
             <p>
-              AcquariaShop nasce nel 2004 dalla passione di un gruppo di
-              appassionati acquariofili che sognavano di creare un punto di
-              riferimento per tutti gli amanti del mondo sottomarino.
+              AcquariaShop nasce nel 2004 dalla passione di un gruppo di appassionati
+              acquariofili che sognavano di creare un punto di riferimento per tutti
+              gli amanti del mondo sottomarino.
             </p>
             <p>
-              Da oltre 20 anni, serviamo con dedizione migliaia di clienti,
-              offrendo non solo prodotti di altissima qualità, ma anche
-              consulenza specializzata e supporto continuo per creare e
-              mantenere acquari meravigliosi.
+              Da oltre 20 anni, serviamo con dedizione migliaia di clienti, offrendo
+              non solo prodotti di altissima qualità, ma anche consulenza
+              specializzata e supporto continuo per creare e mantenere acquari
+              meravigliosi.
             </p>
             <p>
-              La nostra esperienza ci ha permesso di selezionare i migliori
-              fornitori a livello mondiale, garantendo sempre pesci sani,
-              attrezzature all'avanguardia e prodotti sicuri per l'ambiente
-              acquatico.
+              La nostra esperienza ci ha permesso di selezionare i migliori fornitori
+              a livello mondiale, garantendo sempre pesci sani, attrezzature
+              all'avanguardia e prodotti sicuri per l'ambiente acquatico.
             </p>
           </div>
         </motion.div>
@@ -65,27 +64,27 @@ export function About() {
             {[
               {
                 icon: Award,
-                title: "Qualità Premium",
+                title: 'Qualità Premium',
                 description:
-                  "Selezioniamo solo i migliori prodotti per garantire la salute e il benessere dei tuoi pesci.",
+                  'Selezioniamo solo i migliori prodotti per garantire la salute e il benessere dei tuoi pesci.',
               },
               {
                 icon: Users,
-                title: "Supporto Dedicato",
+                title: 'Supporto Dedicato',
                 description:
-                  "Il nostro team di esperti è sempre disponibile per consigli personalizzati e assistenza tecnica.",
+                  'Il nostro team di esperti è sempre disponibile per consigli personalizzati e assistenza tecnica.',
               },
               {
                 icon: Globe,
-                title: "Sostenibilità",
+                title: 'Sostenibilità',
                 description:
-                  "Promuoviamo pratiche sostenibili e rispettose dell'ambiente marino e degli ecosistemi.",
+                  'Promuoviamo pratiche sostenibili e rispettose dell\'ambiente marino e degli ecosistemi.',
               },
               {
                 icon: Target,
-                title: "Innovazione",
+                title: 'Innovazione',
                 description:
-                  "Cerchiamo costantemente le ultime tecnologie e soluzioni innovative per l'acquariofilia.",
+                  'Cerchiamo costantemente le ultime tecnologie e soluzioni innovative per l\'acquariofilia.',
               },
             ].map((value, index) => (
               <motion.div
@@ -120,22 +119,20 @@ export function About() {
             <h2 className="text-3xl font-bold text-white">Il Nostro Team</h2>
           </div>
           <p className="text-white/80 text-lg mb-8">
-            Il nostro staff è composto da biologi marini, acquariofili
-            professionisti e appassionati con anni di esperienza nel settore.
-            Siamo qui per aiutarti a realizzare l'acquario dei tuoi sogni, che
-            tu sia un principiante o un esperto.
+            Il nostro staff è composto da biologi marini, acquariofili professionisti
+            e appassionati con anni di esperienza nel settore. Siamo qui per aiutarti
+            a realizzare l'acquario dei tuoi sogni, che tu sia un principiante o un
+            esperto.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { number: "20+", label: "Anni di Esperienza" },
-              { number: "10K+", label: "Clienti Soddisfatti" },
-              { number: "500+", label: "Prodotti Disponibili" },
-              { number: "24/7", label: "Supporto Clienti" },
+              { number: '20+', label: 'Anni di Esperienza' },
+              { number: '10K+', label: 'Clienti Soddisfatti' },
+              { number: '500+', label: 'Prodotti Disponibili' },
+              { number: '24/7', label: 'Supporto Clienti' },
             ].map((stat, index) => (
               <div key={index} className="space-y-2">
-                <p className="text-4xl font-bold text-cyan-400">
-                  {stat.number}
-                </p>
+                <p className="text-4xl font-bold text-cyan-400">{stat.number}</p>
                 <p className="text-white/70">{stat.label}</p>
               </div>
             ))}
@@ -153,10 +150,10 @@ export function About() {
             La Nostra Missione
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-            "Rendere accessibile a tutti la bellezza e la serenità di un
-            acquario perfetto, fornendo prodotti di qualità superiore,
-            conoscenza esperta e servizio eccezionale. Vogliamo ispirare e
-            supportare ogni acquariofilo nel suo viaggio acquatico."
+            "Rendere accessibile a tutti la bellezza e la serenità di un acquario
+            perfetto, fornendo prodotti di qualità superiore, conoscenza esperta e
+            servizio eccezionale. Vogliamo ispirare e supportare ogni acquariofilo nel
+            suo viaggio acquatico."
           </p>
           <div className="inline-block px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full">
             <p className="text-white font-semibold">

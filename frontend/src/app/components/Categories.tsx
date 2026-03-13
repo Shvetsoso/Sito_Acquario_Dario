@@ -1,37 +1,33 @@
-import React from "react";
-import { motion } from "motion/react";
-import { Link } from "react-router";
-import { Fish, Waves, ShieldCheck, Zap } from "lucide-react";
+import React from 'react';
+import { motion } from 'motion/react';
+import { Link } from 'react-router';
+import { Fish, Waves, ShieldCheck, Zap } from 'lucide-react';
 
 const categories = [
   {
-    title: "Pesci Tropicali",
-    image:
-      "https://images.unsplash.com/photo-1744366071536-7c0c536962a0?w=600&q=80",
-    path: "/shop?category=fish&sub=tropical",
-    icon: <Fish className="w-6 h-6" />,
+    title: 'Pesci Tropicali',
+    image: 'https://images.unsplash.com/photo-1744366071536-7c0c536962a0?w=600&q=80',
+    path: '/shop?category=fish&sub=tropical',
+    icon: <Fish className="w-6 h-6" />
   },
   {
-    title: "Pesci d'Acqua Dolce",
-    image:
-      "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600&q=80",
-    path: "/shop?category=fish&sub=freshwater",
-    icon: <Waves className="w-6 h-6" />,
+    title: 'Pesci d\'Acqua Dolce',
+    image: 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600&q=80',
+    path: '/shop?category=fish&sub=freshwater',
+    icon: <Waves className="w-6 h-6" />
   },
   {
-    title: "Pesci Marini",
-    image:
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80",
-    path: "/shop?category=fish&sub=marine",
-    icon: <ShieldCheck className="w-6 h-6" />,
+    title: 'Pesci Marini',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80',
+    path: '/shop?category=fish&sub=marine',
+    icon: <ShieldCheck className="w-6 h-6" />
   },
   {
-    title: "Acquari Completi",
-    image:
-      "https://images.unsplash.com/photo-1542345647781-7c1c1350f7fb?w=600&q=80",
-    path: "/shop?category=aquarium",
-    icon: <Zap className="w-6 h-6" />,
-  },
+    title: 'Acquari Completi',
+    image: 'https://images.unsplash.com/photo-1542345647781-7c1c1350f7fb?w=600&q=80',
+    path: '/shop?category=aquarium',
+    icon: <Zap className="w-6 h-6" />
+  }
 ];
 
 export const CategorySection = () => {
@@ -39,13 +35,9 @@ export const CategorySection = () => {
     <section className="py-24 relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
-            Esplora le Categorie
-          </h2>
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">Esplora le Categorie</h2>
           <p className="text-cyan-100/70 max-w-2xl mx-auto text-lg">
-            Tutto il necessario per il tuo hobby preferito, selezionato dai
-            nostri esperti per garantire la massima qualità e salute dei tuoi
-            pesci.
+            Tutto il necessario per il tuo hobby preferito, selezionato dai nostri esperti per garantire la massima qualità e salute dei tuoi pesci.
           </p>
         </div>
 
@@ -58,13 +50,13 @@ export const CategorySection = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <Link
+              <Link 
                 to={cat.path}
                 className="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all"
               >
-                <img
-                  src={cat.image}
-                  alt={cat.title}
+                <img 
+                  src={cat.image} 
+                  alt={cat.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

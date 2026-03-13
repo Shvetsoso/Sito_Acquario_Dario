@@ -1,69 +1,69 @@
-import { useState, useMemo } from 'react';
-import { motion } from 'motion/react';
-import { Filter, SlidersHorizontal, X } from 'lucide-react';
-import { products } from '../data/products';
-import { ProductCard } from './ProductCard';
-import '../styles/Shop.css';
+import { useState, useMemo } from "react";
+import { motion } from "motion/react";
+import { Filter, SlidersHorizontal, X } from "lucide-react";
+import { products } from "../data/products";
+import { ProductCard } from "./ProductCard";
+import "../styles/Shop.css";
 
 export function Shop() {
-  const [selectedCategory, setSelectedCategory] = useState('Tutti');
-  const [selectedWaterType, setSelectedWaterType] = useState('Tutti');
+  const [selectedCategory, setSelectedCategory] = useState("Tutti");
+  const [selectedWaterType, setSelectedWaterType] = useState("Tutti");
   const [priceRange, setPriceRange] = useState([0, 500]);
-  const [sortBy, setSortBy] = useState('featured');
+  const [sortBy, setSortBy] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
 
   const categories = [
-    'Tutti',
-    'Pesci',
-    'Acquari',
-    'Filtri',
-    'Pompe',
-    'Illuminazione',
-    'Mangimi',
-    'Decorazioni',
-    'Pulizia',
+    "Tutti",
+    "Pesci",
+    "Acquari",
+    "Filtri",
+    "Pompe",
+    "Illuminazione",
+    "Mangimi",
+    "Decorazioni",
+    "Pulizia",
   ];
 
-  const waterTypes = ['Tutti', 'Acqua Dolce', 'Acqua Salata', 'Entrambi'];
+  const waterTypes = ["Tutti", "Acqua Dolce", "Acqua Salata", "Entrambi"];
 
   const filteredProducts = useMemo(() => {
     let filtered = [...products];
 
     // Filter by category
-    if (selectedCategory !== 'Tutti') {
+    if (selectedCategory !== "Tutti") {
       filtered = filtered.filter((p) => p.category === selectedCategory);
     }
 
     // Filter by water type
-    if (selectedWaterType !== 'Tutti') {
+    if (selectedWaterType !== "Tutti") {
       const waterTypeMap = {
-        'Acqua Dolce': 'dolce',
-        'Acqua Salata': 'salata',
-        Entrambi: 'entrambi',
+        "Acqua Dolce": "dolce",
+        "Acqua Salata": "salata",
+        Entrambi: "entrambi",
       };
       const waterType = waterTypeMap[selectedWaterType];
       filtered = filtered.filter(
-        (p) => p.waterType === waterType || p.waterType === 'entrambi'
+        (p) => p.waterType === waterType || p.waterType === "entrambi",
       );
     }
 
     // Filter by price range
     filtered = filtered.filter(
-      (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
+      (p) => p.price >= priceRange[0] && p.price <= priceRange[1],
     );
 
     // Sort
     switch (sortBy) {
-      case 'price-low':
+      case "price-low":
         filtered.sort((a, b) => a.price - b.price);
         break;
-      case 'price-high':
+      case "price-high":
         filtered.sort((a, b) => b.price - a.price);
         break;
-      case 'rating':
+      case "rating":
         filtered.sort((a, b) => b.rating - a.rating);
         break;
-      case 'name':
+      case "name":
         filtered.sort((a, b) => a.name.localeCompare(b.name));
         break;
       default:
@@ -110,7 +110,7 @@ export function Shop() {
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`filter-button ${selectedCategory === category ? 'active' : ''}`}
+                      className={`filter-button ${selectedCategory === category ? "active" : ""}`}
                     >
                       {category}
                     </button>
@@ -126,7 +126,7 @@ export function Shop() {
                     <button
                       key={type}
                       onClick={() => setSelectedWaterType(type)}
-                      className={`filter-button ${selectedWaterType === type ? 'active' : ''}`}
+                      className={`filter-button ${selectedWaterType === type ? "active" : ""}`}
                     >
                       {type}
                     </button>
@@ -136,9 +136,7 @@ export function Shop() {
 
               {/* Price Range */}
               <div className="filter-section">
-                <h3 className="filter-section-title">
-                  Fascia di Prezzo
-                </h3>
+                <h3 className="filter-section-title">Fascia di Prezzo</h3>
                 <div className="price-range-container">
                   <input
                     type="range"
@@ -160,10 +158,10 @@ export function Shop() {
               {/* Reset Filters */}
               <button
                 onClick={() => {
-                  setSelectedCategory('Tutti');
-                  setSelectedWaterType('Tutti');
+                  setSelectedCategory("Tutti");
+                  setSelectedWaterType("Tutti");
                   setPriceRange([0, 500]);
-                  setSortBy('featured');
+                  setSortBy("featured");
                 }}
                 className="reset-button"
               >
@@ -196,9 +194,9 @@ export function Shop() {
               onClick={() => setShowFilters(false)}
             >
               <motion.div
-                initial={{ x: '100%' }}
+                initial={{ x: "100%" }}
                 animate={{ x: 0 }}
-                exit={{ x: '100%' }}
+                exit={{ x: "100%" }}
                 onClick={(e) => e.stopPropagation()}
                 className="mobile-filters-panel"
               >
@@ -215,7 +213,7 @@ export function Shop() {
                       <button
                         key={category}
                         onClick={() => setSelectedCategory(category)}
-                        className={`filter-button ${selectedCategory === category ? 'active' : ''}`}
+                        className={`filter-button ${selectedCategory === category ? "active" : ""}`}
                       >
                         {category}
                       </button>
@@ -230,7 +228,7 @@ export function Shop() {
                       <button
                         key={type}
                         onClick={() => setSelectedWaterType(type)}
-                        className={`filter-button ${selectedWaterType === type ? 'active' : ''}`}
+                        className={`filter-button ${selectedWaterType === type ? "active" : ""}`}
                       >
                         {type}
                       </button>
@@ -239,9 +237,7 @@ export function Shop() {
                 </div>
 
                 <div className="filter-section">
-                  <h3 className="filter-section-title">
-                    Fascia di Prezzo
-                  </h3>
+                  <h3 className="filter-section-title">Fascia di Prezzo</h3>
                   <div className="price-range-container">
                     <input
                       type="range"
@@ -262,10 +258,10 @@ export function Shop() {
 
                 <button
                   onClick={() => {
-                    setSelectedCategory('Tutti');
-                    setSelectedWaterType('Tutti');
+                    setSelectedCategory("Tutti");
+                    setSelectedWaterType("Tutti");
                     setPriceRange([0, 500]);
-                    setSortBy('featured');
+                    setSortBy("featured");
                   }}
                   className="reset-button"
                 >
@@ -280,7 +276,8 @@ export function Shop() {
             {/* Sort and Results Count */}
             <div className="sort-bar">
               <p className="results-count">
-                {filteredProducts.length} prodott{filteredProducts.length !== 1 ? 'i' : 'o'}
+                {filteredProducts.length} prodott
+                {filteredProducts.length !== 1 ? "i" : "o"}
               </p>
               <select
                 value={sortBy}
