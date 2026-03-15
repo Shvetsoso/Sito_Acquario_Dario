@@ -1,9 +1,10 @@
 import { useState, useMemo } from "react";
 import { motion } from "motion/react";
 import { Filter, SlidersHorizontal, X } from "lucide-react";
-import { products } from "../data/products";
 import { ProductCard } from "./ProductCard";
 import "../styles/Shop.css";
+import { useQuery } from "@tanstack/react-query";
+import { getProdotti } from "../data/products";
 
 export function Shop() {
   const [selectedCategory, setSelectedCategory] = useState("Tutti");
@@ -11,6 +12,13 @@ export function Shop() {
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [sortBy, setSortBy] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
+  const [prodotti, setProdotti] = useState([]);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["getprodotti"],
+    queryFn: async () =>
+      getProdotti().then((prodotto) => setProdotti(prodotto)),
+  });
 
   const categories = [
     "Tutti",

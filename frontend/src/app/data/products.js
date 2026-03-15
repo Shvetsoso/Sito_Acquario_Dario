@@ -272,3 +272,9 @@ export const products = [
     inStock: true,
   },
 ];
+
+import axios from 'axios'
+
+export const getProdotti = async () => {
+    const response = await axios.get("http://localhost3000/api/articoli");
+}
