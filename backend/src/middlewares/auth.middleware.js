@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const ApiError = require('../utils/ApiError');
-/*
+
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -20,4 +20,3 @@ module.exports = (req, res, next) => {
     throw new ApiError(401, 'Token non valido');
   }
 };
-*/
