@@ -13,6 +13,10 @@ exports.createArticolo = async (req, res, next) => {
   }
 };
 
+exports.updateArticolo = async (req, res) => {
+  res.json({ message: "update funziona" });
+};
+
 exports.getAllArticoli = async (req, res, next) => {
   try {
     const articoli = await service.getAllArticoli();

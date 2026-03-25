@@ -5,7 +5,7 @@ const controller = require('../controllers/articoli.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 const validate = require('../middlewares/validate.middleware');
 const { createArticoloSchema } = require('../validators/articoli.validator');
-const pool = require("../config/db")
+const pool = require("../config/db");
 
 //  CREATE
 router.post(
@@ -19,13 +19,13 @@ router.post(
 
 router.get('/', controller.getAllArticoli);
 
-router.get('/', controller.getAllPesci);
+router.get('/pesci', controller.getAllPesci);
 
-router.get('/', controller.getAllAcquari);
+router.get('/acquari', controller.getAllAcquari);
 
-router.get('/', controller.getAllAttrezzature);
+router.get('/attrezzature', controller.getAllAttrezzature);
 
-router.get('/', controller.getAllProdotti);
+router.get('/prodotti', controller.getAllProdotti);
 
 //  READ ONE
 router.get('/:id', controller.getArticoloByName);
