@@ -111,19 +111,17 @@ exports.deleteArticolo = async (req, res, next) => {
 
 exports.filterArticoli = async (req,res,next)=>{
 
-try{
+ try{
 
-const articoli = await service.filterArticoli(req.query);
+  const articoli = await service.filterArticoli(req.query)
 
-res.json({
-success:true,
-data:articoli
-});
+  res.json({
+   success:true,
+   data:articoli
+  })
 
-}catch(err){
-
-next(err);
+ }catch(err){
+  next(err)
+ }
 
 }
-
-};

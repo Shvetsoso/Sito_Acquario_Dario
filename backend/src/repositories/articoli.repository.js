@@ -334,63 +334,48 @@ return result.rows[0];
 
 
 /*
-exports.filter = async (filters)=>{
+exports.filterArticoli = async (filters)=>{
 
 let query = `
-SELECT *
-FROM articoli
-WHERE attivo=true
-`;
+SELECT
+a.id,
+a.nome,
+a.prezzo,
+a.tipo,
+m.quantita,
+p.specie,
+ac.litri
+FROM articoli a
+LEFT JOIN magazzino m ON m.id_articolo=a.id
+LEFT JOIN pesci p ON p.id_articolo=a.id
+LEFT JOIN acquari ac ON ac.id_articolo=a.id
+WHERE a.attivo=true
+`
 
-let values=[];
-let i=1;
+const values=[]
+let index=1
 
 if(filters.tipo){
-
-query+=` AND tipo=$${i}`;
-values.push(filters.tipo);
-i++;
-
+query+=` AND a.tipo=$${index}`
+values.push(filters.tipo)
+index++
 }
 
-if(filters.categoria){
-
-query+=` AND id_categoria=$${i}`;
-values.push(filters.categoria);
-i++;
-
+if(filters.prezzoMin){
+query+=` AND a.prezzo >= $${index}`
+values.push(filters.prezzoMin)
+index++
 }
 
-if(filters.minPrezzo){
-
-query+=` AND prezzo >= $${i}`;
-values.push(filters.minPrezzo);
-i++;
-
+if(filters.prezzoMax){
+query+=` AND a.prezzo <= $${index}`
+values.push(filters.prezzoMax)
+index++
 }
 
-if(filters.maxPrezzo){
+const result = await pool.query(query,values)
 
-query+=` AND prezzo <= $${i}`;
-values.push(filters.maxPrezzo);
-i++;
-
+return result.rows
 }
-
-if(filters.search){
-
-query+=` AND nome ILIKE $${i}`;
-values.push(`%${filters.search}%`);
-i++;
-
-}
-
-query+=` ORDER BY id DESC`;
-
-const result = await pool.query(query,values);
-
-return result.rows;
-
-};
 
 */
