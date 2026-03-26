@@ -6,7 +6,7 @@
 
   "scripts": {
     "build": "npx vite build",
-    "dev": "vite"
+    "dev": "npx vite"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
