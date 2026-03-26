@@ -2,15 +2,16 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "vercel-build": "echo 'Backend does not need build'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Backend per il progetto, API Express con Supabase",
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",
     "bcrypt": "^6.0.0",
@@ -20,7 +21,12 @@
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1",
-    "nodemon": "^3.1.11",
     "pg": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
