@@ -1,3 +1,8 @@
+export const getProdotti = async () => {
+    const response = await axios.get("https://sito-acquario-dario.onrender.com/api/articoli");
+    return response.data;
+};
+
 export const products = [
   // Pesci d'acqua dolce
   {
@@ -275,6 +280,3 @@ export const products = [
 
 import axios from 'axios'
 
-export const getProdotti = async () => {
-    const response = await axios.get("http://localhost3000/api/articoli");
-}
