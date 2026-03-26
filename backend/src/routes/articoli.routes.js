@@ -17,7 +17,7 @@ router.post(
 
 //  READ ALL
 
-router.get('/', controller.getAllArticoli);
+router.get('/articoli', controller.getAllArticoli);
 
 router.get('/pesci', controller.getAllPesci);
 
@@ -27,8 +27,11 @@ router.get('/attrezzature', controller.getAllAttrezzature);
 
 router.get('/prodotti', controller.getAllProdotti);
 
+// FILTRO RICERCA
+router.get('/filter/search', controller.filterArticoli);
+
 //  READ ONE
-router.get('/:id', controller.getArticoloByName);
+router.get('/articolo/:nome', controller.getArticoloByName);
 
 //  UPDATE
 router.put('/:id', authMiddleware, controller.updateArticolo);
@@ -36,7 +39,5 @@ router.put('/:id', authMiddleware, controller.updateArticolo);
 // DELETE (soft)
 router.delete('/:id', authMiddleware, controller.deleteArticolo);
 
-// FILTRO RICERCA
-router.get('/filter/search', controller.filterArticoli);
 
 module.exports = router;
