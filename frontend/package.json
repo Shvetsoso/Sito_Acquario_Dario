@@ -5,9 +5,10 @@
   "type": "module",
 
   "scripts": {
-    "prepare": "chmod +x node_modules/.bin/vite",
-    "build": "npx vite build"
-  },
+  "prepare": "chmod +x node_modules/.bin/vite",
+  "build": "npx vite build",
+  "dev": "npx vite"
+},
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
